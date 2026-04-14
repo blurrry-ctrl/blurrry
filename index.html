@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Blurrry</title>
+    <link rel="stylesheet" href="blurryCSS.css">
+    <link href="htttps://fonts.googleapis.com/css2?family=Poppins : wght2@300;500;700&display=swap" rel="stylesheet">
+    <script src="blurrry.js" defer></script>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+    <nav class="navbar">
+        <div class="logo-box">
+        </div>
+        <div class="nav-links">
+            <a href="#portfolio">WORK</a>
+            <a href="#services">SERVICES</a>
+            <a href="contact">CONTACT</a>
+        </div>
+    </nav>
+
+    <header class="top-header">
+        <div class="logo-box">
+            <img src="IMG(1).jpg" alt="logo">
+            <h1>Blurrry</h1>
+            <p>Professional Editor</p>
+        </div>
+    </header>
+    <section class="hero">
+        <h2>TURNING IDEAS TO PEAK CONTENT</h2>
+        <a href="https://blurrry-portfolio.carrd.co/" class="btn">View my work</a>
+    </section>
+
+    <section id="portfolio">
+        <a href="https://blurrry-portfolio.carrd.co/"></a>
+    </section>
+
+
+
+    <section id="contact">
+        <a href="https://discord.com/users/blurrry4.com"></a>
+    </section>
+
+    <section class="stats">
+        <div>
+            <h2>1M+</h2>
+            <p>Total views</p>
+        </div>
+        <div>
+            <h2>20+</h2>
+            <p>projects Completed</p>
+        </div>
+        <div>
+            <h2>24h-48h</h2>
+            <p>Fast Delivery</p>
+        </div>
+    </section>
+
+    <section class="services">
+
+        <h2 class="section-title">My Services</h2>
+
+        <div class="services-grid">
+
+            <div class="service-card">
+                <div class="icon">🎬</div>
+                <h3>YouTube Editing</h3>
+                <p>High-retention storytelling edits that keep viewers watching.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon">⚡</div>
+                <h3>Short Form Content</h3>
+                <p>Viral TikToks, Reels & Shorts designed for growth.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon">🔥</div>
+                <h3>Viral Repurposing</h3>
+                <p>Turn long videos into multiple high-performing clips.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    </div>
+
+    <section id="contact">
+        <h2 class="contact-title">BOOK ME:</h2>
+
+        <form>
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Email">
+            <textarea placeholder="Tell me about your project"></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <section class="starter-pack">
+
+        <h2>Starter Pack</h2>
+
+        <div class="pack-card">
+            <h3>🔥 Beginner Bundle</h3>
+            <p>3 Short Form Videos + 1 Long Form Edit</p>
+            <span>$74.99 - $149.99</span>
+        </div>
+
+        <div class="pack-card">
+            <h3>⚡ Growth Bundle</h3>
+            <p>5 Shorts + Thumbnails + Viral Hooks</p>
+            <span>$179.99 - $249.99</span>
+        </div>
+
+    </section>
+
+    <section class="faq">
+
+        <h2>FAQ</h2>
+
+        <div class="faq-item">
+            <button class="faq-question">How fast is delivery?</button>
+            <div class="faq-answer">Usually 24–48 hours depending on workload.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">What do you need from me?</button>
+            <div class="faq-answer">Raw footage + style reference or idea.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">Do you do revisions?</button>
+            <div class="faq-answer">Yes, 1–2 revisions depending on package.</div>
+        </div>
+
+    </section>
+
+    <a href="https://discord.com/users/blurrry4.com" class="hire-btn">HIRE ME</a>
+    <section id="pricing">
+        <h2>PRICING CALCULATOR</h2>
+
+        <label>Type:</label>
+        <select id="type">
+            <option value="25">Short Form ($25)</option>
+            <option value="100">Long Form ($100) </option>
+        </select>
+        <h3>Total: $<span id="total">25</span> </h3>
+    </section>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        });
+
+        document.querySelectorAll(".fade").forEach(el => observer.observe(el));
+
+        // Navbar shrink on scroll
+        window.addEventListener("scroll", () => {
+            document.querySelector(".navbar")
+                .classList.toggle("scrolled", window.scrollY > 50);
+        });
+
+        // Video modal
+        function openModal(videoUrl) {
+            document.getElementById("modal").style.display = "flex";
+            document.getElementById("modalVideo").src = videoUrl;
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+            document.getElementById("modalVideo").src = "";
+        }
+    </script>
+</body>
+
+<script>
+    window.addEventListener("load", () => {
+        document.getElementById("loader").style.display = "none";
+    });
+</script>
+
+<script>
+    function calcPrice() {
+        let videos = document.getElementById("videos").value;
+        let price = document.getElementById("type").value;
+
+        document.getElementById("total").innerText = videos * price;
+    }
+
+    document.getElementById("videos").addEventListener("input", calcPrice);
+    document.getElementById("type").addEventListener("change", calcPrice);
+</script>
+
+<script>
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    for (let i = 0; i < 60; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: Math.random() - 0.5,
+            vy: Math.random() - 0.5
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+
+            ctx.fillStyle = "rgba(255,255,255,0.5)";
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+</script>
+
+
+<div class="chatbox">
+    <p><strong>AI Assistant:</strong> Need an editor? Tell me your project 👇</p>
+    <input type="text" placeholder="Type here...">
+</div>
+
+
+<audio id="hoverSound" src="hover.mp3"></audio>
+
+<script>
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("mouseenter", () => {
+            document.getElementById("hoverSound").play();
+        });
+    });
+</script>
+
+<textarea placeholder="What type of content? (YouTube, TikTok, etc)"></textarea>
+<textarea placeholder="Budget?"></textarea>
+
+
+<script>
+    document.querySelectorAll(".service-card").forEach(card => {
+        card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 15;
+            const rotateY = (x - centerX) / 15;
+
+            card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+            card.style.transform = "rotateX(0) rotateY(0) translateY(0)";
+        });
+    });
+</script>
+
+
+<script>
+    document.querySelectorAll(".faq-question").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const answer = btn.nextElementSibling;
+
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+                answer.style.opacity = 0;
+            } else {
+                answer.style.maxHeight = "200px";
+                answer.style.opacity = 1;
+            }
+        });
+    });
+</script>
+
+</html>
